@@ -44,6 +44,9 @@ vim.o.scrolloff = 10
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
 
+-- Ensure termguicolors is enabled if not already
+vim.opt.termguicolors = true
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

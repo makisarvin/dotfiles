@@ -1,9 +1,10 @@
+@import "mocha.css";
 
 * {
   font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
   font-weight: bold;
   font-size: 16px;
-  color: #dcdfe1;
+  color: @text;
 }
 
 /* Waybar */
@@ -16,34 +17,34 @@
 #workspaces,
 #window,
 #tray{
-  /*background-color: rgba(29,31,46, 0.95);*/
-  background-color: rgba(15,27,53,0.9);
-  padding: 4px 6px; /* 保持内部间距 */
-  margin-top: 6px; /* 外部间距增加 */
-  margin-left: 6px; /* 外部间距增加 */
-  margin-right: 6px; /* 外部间距增加 */
+  background-color: @base;
+  opacity: 0.9;
+  padding: 4px 6px; 
+  margin-top: 6px; 
+  margin-left: 6px; 
+  margin-right: 6px; 
   border-radius: 10px;
   border-width: 0px;
 }
 
 #clock,
 #custom-power{
-  background-color: rgba(15,27,53,0.9);
-  margin-top: 6px; /* 与屏幕顶部留出距离 */
+  background-color: @base;
+  opacity: 0.9;
+  margin-top: 6px; 
   margin-right: 6px;
-  /*margin-bottom: 4px;*/
-  padding: 4px 2px; /* 保持内部间距 */
+  padding: 4px 2px; 
   border-radius: 0 10px 10px 0;
   border-width: 0px;
 }
 
 #network,
 #custom-lock{
-  background-color: rgba(15,27,53,0.9);
-  margin-top: 6px; /* 与屏幕顶部留出距离 */
+  background-color: @base;
+  opacity: 0.9;
+  margin-top: 6px; 
   margin-left: 6px;
-  /*margin-bottom: 4px;*/
-  padding: 4px 2px; /* 保持内部间距 */
+  padding: 4px 2px; 
   border-radius: 10px 0 0 10px;
   border-width: 0px;
 }
@@ -56,16 +57,16 @@
 #custom-temperature,
 #memory,
 #cpu{
-  background-color: rgba(15,27,53,0.9);
-  margin-top: 6px; /* 与屏幕顶部留出距离 */
-  /*margin-bottom: 4px;*/
-  padding: 4px 2px; /* 保持内部间距 */
+  background-color: @base;
+  opacity: 0.9;
+  margin-top: 6px; 
+  padding: 4px 2px; 
   border-width: 0px;
 }
 
 #custpm-temperature.critical,
 #pulseaudio.muted {
-  color: #FF0000;
+  color: @redish;
   padding-top: 0;
 }
 
@@ -84,7 +85,16 @@
 #custom-power:hover,
 /*#workspaces:hover,*/
 #window:hover {
-  background-color: rgba(70, 75, 90, 0.9);
+  background-color: @surface1;
+  opacity: 0.9;
+}
+
+#workspaces button {
+  background: transparent;
+  border: none;
+  padding: 2px 8px;
+  margin: 0 2px;
+  font-weight: bold;
 }
 
 #workspaces button:hover{
@@ -95,20 +105,14 @@
 }
 
 #workspaces button.active {
-  background-color: #89b4fa;
-  color: #1e2e3e;
+  background-color: @blue;
   padding: 2px 8px;
   margin: 0 2px;
   border-radius: 10px;
 }
 
-#workspaces button {
-  background: transparent;
-  border: none;
-  color: #888888;
-  padding: 2px 8px;
-  margin: 0 2px;
-  font-weight: bold;
+#workspaces button.active label {
+  color: @crust;
 }
 
 #window {
