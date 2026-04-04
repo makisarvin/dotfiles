@@ -1,0 +1,12 @@
+[Unit]
+Description=Awww Animated Wallpaper Daemon
+After=graphical-session.target
+
+[Service]
+# Ensure the path matches your installation (e.g., /usr/bin/swww-daemon or /usr/bin/awww-daemon)
+ExecStart=/usr/bin/awww-daemon -f xrgb
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target
