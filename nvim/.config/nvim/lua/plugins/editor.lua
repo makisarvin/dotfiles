@@ -53,4 +53,29 @@ return {
       },
     },
   },
+
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = { 'kevinhwang91/promise-async' },
+    config = function()
+      local opts = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' }
+      require("ufo").setup({
+        filetype_exclude = opts,
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+        end
+      })
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('local_detach_ufo', { clear = true }),
+        pattern = opts,
+        callback = function()
+          require('ufo').detach()
+        end,
+      })
+
+      vim.opt.foldlevelstart = 99
+
+  end
+  }
 }
