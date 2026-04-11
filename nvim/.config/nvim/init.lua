@@ -14,3 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("vim-options")
 require("autocmds")
 require("lazy").setup("plugins")
+
+-- Load external config AFTER plugins are initialized
+dofile(vim.fn.expand("~/.config/aether/theme/neovim.lua"))
