@@ -1,0 +1,4 @@
+{
+  "template": "kitty.conf",
+  "destination": "~/.config/kitty/themes/aether.conf"
+}

@@ -1,0 +1,8 @@
+* {
+    background:     {background};
+    background-alt: {bright_black};
+    foreground:     {foreground};
+    selected:       {blue};
+    active:         {green};
+    urgent:         {red};
+}
