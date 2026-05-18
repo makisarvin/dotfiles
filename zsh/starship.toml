@@ -11,7 +11,7 @@ format = "[$symbol](#E95420) "
 [os.symbols]
 Ubuntu = "󰕈"
 Arch   = "󰣇"
-Macos  = ""
+Macos  = ""
 
 [directory]
 format            = "[$path](cyan) "
@@ -24,32 +24,32 @@ format = "[$symbol $branch](bold purple) "
 
 [git_status]
 format     = "($ahead_behind$staged$modified$untracked$deleted$conflicted)"
-ahead      = " [⇡$count ](bold cyan)"
-behind     = " [⇣$count ](bold cyan)"
-diverged   = " [⇡$ahead_count⇣$behind_count ](bold cyan)"
-staged     = " [+$count ](bold green)"
-modified   = " [●$count ](bold yellow)"
-untracked  = " [?$count ](bold white)"
-deleted    = " [✘$count ](bold red)"
-conflicted = " [⚡$count ](bold red)"
+ahead      = "[⇡$count ](bold cyan)"
+behind     = "[⇣$count ](bold cyan)"
+diverged   = "[⇡$ahead_count⇣$behind_count ](bold cyan)"
+staged     = "[+$count ](bold green)"
+modified   = "[●$count ](bold yellow)"
+untracked  = "[?$count ](bold white)"
+deleted    = "[✘$count ](bold red)"
+conflicted = "[⚡$count ](bold red)"
 
 [nodejs]
 symbol = ""
-format = "[$symbol $version](green)"
+format = "[$symbol $version](green) "
 
 [rust]
 symbol = ""
-format = "[$symbol $version](red)"
+format = "[$symbol $version](red) "
 
 [golang]
 symbol = ""
-format = "[$symbol $version](cyan)"
+format = "[$symbol $version](cyan) "
 
 [php]
 symbol = ""
-format = "[$symbol $version](purple)"
+format = "[$symbol $version](purple) "
 
 [character]
-success_symbol = "[➤](green)"
-error_symbol   = "[➤](red)"
+success_symbol = "[❯](green)"
+error_symbol   = "[❯](red)"
 vimcmd_symbol  = "[❮](blue)"

@@ -3,8 +3,15 @@ rofi
 waybar
 pipewire
 awww
+eza
+bat
+fd
+fzf
+zoxide
 starship
+ripgrep
 xdg-user-dirs
 mpv
 aether
 btop
+
