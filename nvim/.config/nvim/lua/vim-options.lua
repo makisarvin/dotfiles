@@ -3,11 +3,13 @@ vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 
+-- set leader to space
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- auto format
 vim.g.autoformat = true
+vim.o.autoread = true -- auto-reload changes outside of nvim
 
 -- set to true if you have nerd font installed
 vim.g.have_nerd_font = true
@@ -19,14 +21,26 @@ vim.wo.number = true
 vim.o.mouse = "a"
 
 -- enable undo/redo
+local undodir = vim.fn.expand("~/.vim/undodir")
+if vim.fn.isdirectory(undodir) == 0 then
+	vim.fn.mkdir(undodir, "p")
+end
+
 vim.o.undofile = true
+vim.o.undodir = undodir
+-- -----------------------------------
+--Search Options
+-- -----------------------------------
+vim.o.ignorecase = true -- case insensitive search
+vim.o.smartcase = true -- case sensitive if uppercase in string
+vim.o.hlsearch = true -- highlight search matches
+vim.o.incsearch = true -- show matches as you type
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.o.signcolumn = "yes"
+-- -----------------------------------
+-- Editor view & panels
+-- -----------------------------------
+vim.o.signcolumn = "yes" -- always show sign column
+vim.o.colorcolumn = "100" -- show a column at 100 position chars
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -47,7 +61,7 @@ vim.o.scrolloff = 10
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
 
--- Ensure termguicolors is enabled if not already
+-- Ensure termguicolors is enabled if not alrea
 vim.opt.termguicolors = true
 
 -- Configuration for folds
