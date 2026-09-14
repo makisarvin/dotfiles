@@ -1,0 +1,26 @@
+{
+  "coding": {
+    "sourceDir": "coding",
+    "description": "General software development with web access, code intelligence, and analysis tools"
+  },
+  "context": {
+    "sourceDir": "context",
+    "description": "Interactive context tools: ask-user-question, todo management, and recursive language model (pi-rlm) for token-efficient subagent workflows"
+  },
+  "search": {
+    "sourceDir": "search",
+    "description": "Web search and content extraction capabilities"
+  },
+  "common": {
+    "sourceDir": "common",
+    "description": "Shared packages for all projects: pi-hypa reasoning engine and pi-observational-memory"
+  },
+  "architecture": {
+    "sourceDirs": ["coding", "context", "search"],
+    "description": "Architecture planning with coding, context, and search tools (no language-specific skills)"
+  },
+  "luau": {
+    "config": "languages/luau/profile.json",
+    "description": "Luau/Roblox development"
+  }
+}

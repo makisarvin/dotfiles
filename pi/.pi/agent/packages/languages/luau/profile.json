@@ -1,0 +1,4 @@
+{
+  "sourceDirs": ["coding", "search", "languages/luau"],
+  "description": "Luau/Roblox development with strict typing, rojo, pesde, rokit, and luau-lsp"
+}
