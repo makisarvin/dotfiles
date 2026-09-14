@@ -1,3 +1,7 @@
+## TOOLS
+
+Prefer `hypa_*` equivalents when available: `hypa_shell`, `hypa_read`, `hypa_grep`, `hypa_find`, `hypa_ls`. These cap output at 50KB / 2000 lines and compress noisy shell output automatically. Fallback to `bash` or `powershell` only when the hypa tools are absent.
+
 ## CRITICAL CONSTRAINTS
 
 - NO introductory fluff, apologies, or conversational filler.

@@ -21,6 +21,9 @@ alias cat='bat'
 alias df='df -h'
 alias grep='rg --color=auto'
 
+# Hypa for PI agent
+export HYPA_PI_MODE=replace
+
 # Copyright (c) 2026 Author. All Rights Reserved.
 # Add your own exports, aliases, and functions here.
 #

@@ -1,1 +1,5 @@
 zsh/.config/zsh/plugins/*
+
+.pi/
+.claude/
+

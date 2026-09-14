@@ -129,14 +129,16 @@ for src in "${SOURCE_PIS[@]}"; do
 done
 
 if [ ${#SETTINGS_FILES[@]} -gt 0 ]; then
-  # Merge all source settings: arrays concatenate and dedup, scalars: first wins
+  # Merge all source settings: arrays concatenate and dedup, scalars: first wins,
+  # object keys (observational-memory) shallow-merge with later values winning
   COMBINED_SETTINGS=$(jq -s '
     reduce .[] as $item ({};
       {
         packages: (((.packages // []) + ($item.packages // [])) | unique),
         skills: (((.skills // []) + ($item.skills // [])) | unique),
-        extensions: (((.extensions // []) + ($item.extensions // [])) | unique)
-      } + (. | del(.packages, .skills, .extensions)) + ($item | del(.packages, .skills, .extensions))
+        extensions: (((.extensions // []) + ($item.extensions // [])) | unique),
+        "observational-memory": ((."observational-memory" // {}) + ($item."observational-memory" // {}))
+      } + (. | del(.packages, .skills, .extensions, ."observational-memory")) + ($item | del(.packages, .skills, .extensions, ."observational-memory"))
     )
   ' "${SETTINGS_FILES[@]}")
 
@@ -150,6 +152,8 @@ if [ ${#SETTINGS_FILES[@]} -gt 0 ]; then
         $target;
         if $k == "packages" or $k == "skills" or $k == "extensions" then
           .[$k] = (((.[$k] // []) + ($source[$k] // [])) | unique)
+        elif $k == "observational-memory" then
+          .[$k] = (($source[$k] // {}) + (.[$k] // {}))
         else
           .[$k] = (.[$k] // $source[$k])
         end
