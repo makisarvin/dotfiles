@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+set -eu
+
+SELF="$(realpath "$0" 2>/dev/null || printf '%s' "$0")"
+
+# Search upward from $PWD for a project-local hypa installation.
+# Checks both Pi's local .pi/npm directory and regular node_modules.
+_dir="$PWD"
+while [ "$_dir" != "/" ]; do
+  # Pi-local native binary (Linux x64)
+  _native="$_dir/.pi/npm/node_modules/@hypabolic/hypa-linux-x64/bin/hypa"
+  if [ -x "$_native" ]; then
+    exec "$_native" "$@"
+  fi
+
+  # Pi-local .bin shim
+  if [ -x "$_dir/.pi/npm/node_modules/.bin/hypa" ]; then
+    _candidate="$(realpath "$_dir/.pi/npm/node_modules/.bin/hypa" 2>/dev/null || printf '%s' "$_dir/.pi/npm/node_modules/.bin/hypa")"
+    if [ "$_candidate" != "$SELF" ]; then
+      exec "$_candidate" "$@"
+    fi
+  fi
+
+  # Regular node_modules native binary
+  _native="$_dir/node_modules/@hypabolic/hypa-linux-x64/bin/hypa"
+  if [ -x "$_native" ]; then
+    exec "$_native" "$@"
+  fi
+
+  # Regular node_modules .bin shim
+  if [ -x "$_dir/node_modules/.bin/hypa" ]; then
+    _candidate="$(realpath "$_dir/node_modules/.bin/hypa" 2>/dev/null || printf '%s' "$_dir/node_modules/.bin/hypa")"
+    if [ "$_candidate" != "$SELF" ]; then
+      exec "$_candidate" "$@"
+    fi
+  fi
+
+  _dir="$(dirname "$_dir")"
+done
+
+# No project-local hypa found.
+echo "hypa: no local hypa binary found in this project." >&2
+echo "Install it with:  pi install -l npm:@hypabolic/pi-hypa" >&2
+exit 1
