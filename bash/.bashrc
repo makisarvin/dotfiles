@@ -29,3 +29,7 @@ export HYPA_PI_MODE=replace
 #
 # Make an alias for invoking commands you use constantly
 # alias p='python'
+#
+# add Pesde in PATH
+export PATH="$PATH:/home/jerry/.pesde/bin"
+. "$HOME/.rokit/env"
