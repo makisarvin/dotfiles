@@ -6,6 +6,10 @@ HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=100000
 SAVEHIST=100000
 
+# XDG dirs are not created by anything else; without these zsh silently
+# fails to read/write the history file and the completion cache.
+mkdir -p "${HISTFILE:h}" "$XDG_CACHE_HOME/zsh"
+
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS

@@ -24,6 +24,9 @@ zplugin-update() {
 }
 
 _zplugin_load zsh-users zsh-autosuggestions
-_zplugin_load zsh-users zsh-history-substring-search
 _zplugin_load jeffreytse zsh-vi-mode
+
+# fast-syntax-highlighting must load BEFORE zsh-history-substring-search,
+# otherwise the search-match highlighting never registers.
 _zplugin_load zdharma-continuum fast-syntax-highlighting
+_zplugin_load zsh-users zsh-history-substring-search
