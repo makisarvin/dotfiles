@@ -1,3 +1,12 @@
+#
+# Individual commands to measure load time
+# time zsh -lic exit
+# for non-login interactive shell
+# time zsh -ic exit
+
+# uncomment to measure load time 
+zmodload zsh/zprof
+
 # ========================
 # History
 # ========================
@@ -32,8 +41,15 @@ setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
 # Load completion system
 autoload -Uz compinit
 
-# Initialize completion with cached metadata file
-compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+# Initialize completion with cached metadata file.
+# Skip the compaudit security scan unless the dump is missing/stale (>24h),
+# since compaudit stats every dir in $fpath and dominates shell startup time.
+ZCOMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump"
+if [[ -n "$ZCOMPDUMP"(#qN.mh+24) ]]; then
+  compinit -d "$ZCOMPDUMP"
+else
+  compinit -C -d "$ZCOMPDUMP"
+fi
 
 # Enable interactive completion menu selection
 zstyle ':completion:*' menu select
@@ -104,3 +120,10 @@ eval "$(jenv init -)"
 
 # Pesde
 export PATH="$PATH:/Users/makis/.pesde/bin"
+
+# .local/bin
+export PATH="$PATH:/Users/makis/.local/bin"
+
+
+# uncomment to measure load time
+zprof
