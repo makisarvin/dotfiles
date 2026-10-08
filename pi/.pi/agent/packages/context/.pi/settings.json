@@ -1,7 +1,0 @@
-{
-  "packages": [
-    "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@juicesharp/rpiv-todo",
-    "npm:@hicaru/pi-rlm"
-  ]
-}
