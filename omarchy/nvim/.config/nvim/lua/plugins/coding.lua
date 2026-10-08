@@ -18,9 +18,6 @@ return {
       -- better deal with markdown code blocks
       markdown = true,
     },
-    config = function(_, opts)
-      LazyVim.mini.pairs(opts)
-    end,
   },
   -- Improves comment syntax, lets Neovim handle multiple
 	-- types of comments for a single language, and relaxes rules
