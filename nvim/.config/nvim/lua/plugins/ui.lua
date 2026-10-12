@@ -13,6 +13,7 @@ return {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
+      notify = { enabled = false }, -- let snacks.notifier own vim.notify
       lsp = {
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -127,6 +128,7 @@ return {
     },
   },
 
-
+  -- file explorer (mapped in config/keymaps.lua as <leader>e)
+  { "nvim-mini/mini.files", lazy = true }
 
 }

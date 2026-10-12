@@ -33,3 +33,5 @@ export HYPA_PI_MODE=replace
 # add Pesde in PATH
 export PATH="$PATH:/home/jerry/.pesde/bin"
 . "$HOME/.rokit/env"
+
+export PATH="/home/jerry/.cache/.bun/bin:$PATH"

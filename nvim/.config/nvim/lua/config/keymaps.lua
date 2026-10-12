@@ -66,29 +66,34 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 map("n", "<leader>uI", function() vim.treesitter.inspect_tree() vim.api.nvim_input("I") end, { desc = "Inspect Tree" })
 
 
+-- Root-dir helper (replacement for LazyVim.root())
+local function root()
+  return vim.fs.root(0, ".git") or vim.fn.getcwd()
+end
+
 -- floating terminal - Snacks.terminal
-map("n", "<leader>fT", function() Snacks.terminal() end, { desc = "Terminal (cwd)" })
-map("n", "<leader>ft", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map({"n","t"}, "<c-/>",function() Snacks.terminal.focus(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })
-map({"n","t"}, "<c-_>",function() Snacks.terminal.focus(nil, { cwd = LazyVim.root() }) end, { desc = "which_key_ignore" })
+map("n", "<leader>fT", function() require("snacks").terminal() end, { desc = "Terminal (cwd)" })
+map("n", "<leader>ft", function() require("snacks").terminal(nil, { cwd = root() }) end, { desc = "Terminal (Root Dir)" })
+map({ "n", "t" }, "<c-/>", function() require("snacks").terminal.focus(nil, { cwd = root() }) end, { desc = "Terminal (Root Dir)" })
+map({ "n", "t" }, "<c-_>", function() require("snacks").terminal.focus(nil, { cwd = root() }) end, { desc = "which_key_ignore" })
 
 -- lazygit
 if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, { desc = "Lazygit (Root Dir)" })
-  map("n", "<leader>gG", function() Snacks.lazygit() end, { desc = "Lazygit (cwd)" })
+  map("n", "<leader>gg", function() require("snacks").lazygit({ cwd = root() }) end, { desc = "Lazygit (Root Dir)" })
+  map("n", "<leader>gG", function() require("snacks").lazygit() end, { desc = "Lazygit (cwd)" })
 end
 
-map("n", "<leader>gL", function() Snacks.picker.git_log() end, { desc = "Git Log (cwd)" })
-map("n", "<leader>gb", function() Snacks.picker.git_log_line() end, { desc = "Git Blame Line" })
-map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git Current File History" })
-map("n", "<leader>gl", function() Snacks.picker.git_log({ cwd = LazyVim.root.git() }) end, { desc = "Git Log" })
-map({ "n", "x" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git Browse (open)" })
-map({"n", "x" }, "<leader>gY", function()
-  Snacks.gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
+map("n", "<leader>gL", function() require("snacks").picker.git_log() end, { desc = "Git Log (cwd)" })
+map("n", "<leader>gb", function() require("snacks").picker.git_log_line() end, { desc = "Git Blame Line" })
+map("n", "<leader>gf", function() require("snacks").picker.git_log_file() end, { desc = "Git Current File History" })
+map("n", "<leader>gl", function() require("snacks").picker.git_log({ cwd = root() }) end, { desc = "Git Log" })
+map({ "n", "x" }, "<leader>gB", function() require("snacks").gitbrowse() end, { desc = "Git Browse (open)" })
+map({ "n", "x" }, "<leader>gY", function()
+  require("snacks").gitbrowse({ open = function(url) vim.fn.setreg("+", url) end, notify = false })
 end, { desc = "Git Browse (copy)" })
 
-
-
+-- mini.files 
+map("n", "<leader>e", function() require("mini.files").open() end, { desc = "Mini files filesystem reveal" })
 
 
 ----------------------------------
@@ -104,7 +109,7 @@ local diagnostic_goto = function(next, severity)
   end
 end
 
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic window" })
+map("n", "<leader>]", vim.diagnostic.open_float, { desc = "Open floating diagnostic window" })
 map("n", "]d", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })

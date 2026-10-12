@@ -186,6 +186,7 @@ return {
   -- in your project and loads them into a browsable list.
   {
     "folke/todo-comments.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {},
