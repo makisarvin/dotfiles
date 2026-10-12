@@ -2,16 +2,7 @@
 
 add_newline = false
 
-format = "$directory$os$git_branch$git_status$nodejs$rust$golang$php $character"
-
-[os]
-disabled = false
-format = "[$symbol](#E95420) "
-
-[os.symbols]
-Ubuntu = "󰕈"
-Arch   = "󰣇"
-Macos  = ""
+format = "[$directory$git_branch$git_status]($style)$character"
 
 [directory]
 format            = "[$path](cyan) "
@@ -32,22 +23,6 @@ modified   = " [●$count ](bold yellow)"
 untracked  = " [?$count ](bold white)"
 deleted    = " [✘$count ](bold red)"
 conflicted = " [⚡$count ](bold red)"
-
-[nodejs]
-symbol = ""
-format = "[$symbol $version](green)"
-
-[rust]
-symbol = ""
-format = "[$symbol $version](red)"
-
-[golang]
-symbol = ""
-format = "[$symbol $version](cyan)"
-
-[php]
-symbol = ""
-format = "[$symbol $version](purple)"
 
 [character]
 success_symbol = "[➤](green)"
